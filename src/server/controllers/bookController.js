@@ -7,8 +7,10 @@ const bookController = {};
 bookController.getBooks = (req, res, next) => {
   Book.find({}, (err, books) => {
     if (err) return next('Error in bookController.getBooks: ' + JSON.stringify(err));
-    console.log('getBooks: ', books);
-    res.locals.books = books;
+    const result = books.map(item => {
+      return { 'title': item.title, 'id': item._id };
+    })
+    res.locals.books = result;
     return next();
   })
 }
@@ -19,6 +21,14 @@ bookController.addBook = (req, res, next) => {
   Book.create({ title: title, }, (err, book) => {
     if (err) return next('Error in bookController.addBook: ' + JSON.stringify(err));
     console.log('addBook: ', book);
+    return next();
+  })
+}
+
+bookController.deleteBook = (req, res, next) => {
+  const id = req.params.id;
+  Book.findOneAndDelete({ _id: id }, (err, book) => {
+    if (err) return next('Error in bookController.deleteBook: ' + JSON.stringify(err));
     return next();
   })
 }

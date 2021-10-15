@@ -1,65 +1,19 @@
 import React, { Component, useState, useEffect } from 'react';
-import { render } from 'react-dom';
-import axios from 'axios';
+import Book from './Book';
 
+const BookDisplay = ({ bookList, setBookList }) => {
 
-const BookDisplay = ({ bookList }) => {
-
+  console.log('item: ', { ...bookList[0] }.id);
 
   return (
-    // <ul>
-    //   {bookList.map(item => (
-    //     <li key={item._id}>
-    //       <a href={item.url}>{item.title}</a>
-    //     </li>
-    //   ))}
-    // </ul>
     <div>
-      
+      {bookList.map(item => {
+        const newItem = { ...item };
+        console.log('newItem.id: ', newItem.id);
+        return <Book id={newItem.id} title={item.title} setBookList={setBookList} />
+      })}
     </div>
   )
 }
-
-
-// class BookDisplay extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       books: [],
-//     }
-
-//     // binds
-//   }
-
-//   componentDidMount() {
-//     axios.get('/books')
-//       .then(res => console.log('res: ',res))
-//       .then((books) => {
-//         console.log('books received: ', books);
-//         if (!Array.isArray(books)) books = [];
-//         return this.setState({
-//           books: books,
-//         });
-//       });
-//   }
-
-//   render() {
-//     // make local var for props
-//     const { books } = this.state;
-//     // edge case for nothing returned
-//     if (!books) return null;
-//     // edge case for empty tasklist
-//     if (!books.length) return (
-//       <div>Sorry, no tasks found</div>
-//     );
-    
-//     return (
-//       <div>
-//         {books}
-//       </div>
-//     )
-//   }
-// }
 
 export default BookDisplay;

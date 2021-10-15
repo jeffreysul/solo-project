@@ -17,13 +17,13 @@ const App = () => {
   return (
     <div>
       <h1>Book Tracker</h1>
-      <h3>My name is Jeff</h3>
+      <h3>A minimalistic approach to keeping your books in order?</h3>
       <div>
         <Dashboard setBookList={setBookList}/>
       </div>
       <hr></hr>
       <div>
-        <BookDisplay bookList={bookList}/>
+        <BookDisplay bookList={bookList} setBookList={setBookList}/>
       </div>
     </div>
   )

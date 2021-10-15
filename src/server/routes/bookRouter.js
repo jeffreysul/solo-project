@@ -20,8 +20,8 @@ router.put('/:id', (req, res) => {
 })
 
 // delete request for an existing task
-router.delete('/:id', (req, res) => {
-  return res.status(200).json();
+router.delete('/:id', bookController.deleteBook, bookController.getBooks, (req, res) => {
+  return res.status(200).json([...res.locals.books]);
 })
 
 module.exports = router;

@@ -8,7 +8,7 @@ const Dashboard = ({ setBookList }) => {
       <label htmlFor='Dashboard'>Your Dashboard</label>
       <hr></hr>
       <div>
-        <label htmlFor='Profile'>Jeffrey Sul</label>
+        <label htmlFor='Profile'>Find A Book</label>
       </div>
       <BookForm setBookList={setBookList} />
     </div>
